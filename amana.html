@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AMANA</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+<link href="amana.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- Sidebar -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-logo">
+    <div class="brand">Edu<span>Care</span></div>
+    <div class="subtitle">Suivi comportemental élèves</div>
+  </div>
+
+  <div class="nav-section">Principal</div>
+  <a class="nav-item active" onclick="showPage('dashboard', this)">
+    <i class="bi bi-grid-1x2"></i> Tableau de bord
+  </a>
+  <a class="nav-item" onclick="showPage('declare', this)">
+    <i class="bi bi-pencil-square"></i> Déclarer un acte
+  </a>
+  <a class="nav-item" onclick="showPage('history', this)">
+    <i class="bi bi-clock-history"></i> Historique des actes
+  </a>
+
+  <div class="nav-section">Élèves</div>
+  <a class="nav-item" onclick="showPage('students', this)">
+    <i class="bi bi-people"></i> Mes élèves
+  </a>
+  <a class="nav-item" onclick="showPage('alerts', this)">
+    <i class="bi bi-exclamation-triangle"></i> Alertes
+    <span class="nav-badge">3</span>
+  </a>
+
+  <div class="nav-section">Communication</div>
+  <a class="nav-item" onclick="showPage('parents', this)">
+    <i class="bi bi-chat-dots"></i> Contacter parents
+  </a>
+  <a class="nav-item" onclick="showPage('psychiatrists', this)">
+    <i class="bi bi-heart-pulse"></i> Psychiatres
+  </a>
+
+  <div class="sidebar-footer">
+    <div class="d-flex align-items-center gap-3">
+      <div class="teacher-avatar">MB</div>
+      <div class="teacher-info">
+        <div class="name">M. Ben Ali</div>
+        <div class="role">Professeur — 4ème A·B·C</div>
+      </div>
+    </div>
+  </div>
+</aside>
+
+<!-- Main -->
+<div class="main">
+  <!-- Topbar -->
+  <div class="topbar">
+    <button class="btn btn-sm d-md-none me-2" onclick="toggleSidebar()"><i class="bi bi-list fs-5"></i></button>
+    <span class="topbar-title" id="topbar-title">Tableau de bord</span>
+    <div class="search-wrap ms-auto">
+      <i class="bi bi-search"></i>
+      <input class="topbar-search" placeholder="Rechercher un élève…" id="globalSearch" oninput="globalSearch(this.value)">
+    </div>
+    <button class="btn btn-sm position-relative ms-2" onclick="showPage('alerts', document.querySelector('.nav-item:nth-child(8)'))">
+      <i class="bi bi-bell fs-5"></i>
+      <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size:9px">3</span>
+    </button>
+  </div>
+
+  <!-- ══ PAGE: Dashboard ══════════════════════════════════════ -->
+  <div class="page active" id="page-dashboard">
+    <div class="row g-3 mb-4">
+      <div class="col-6 col-lg-3">
+        <div class="stat-card">
+          <div class="stat-icon teal"><i class="bi bi-people-fill"></i></div>
+          <div class="stat-number">87</div>
+          <div class="stat-label">Élèves suivis</div>
+          <div class="stat-change up"><i class="bi bi-arrow-up"></i> 4 nouveaux</div>
+        </div>
+      </div>
+      <div class="col-6 col-lg-3">
+        <div class="stat-card">
+          <div class="stat-icon green"><i class="bi bi-star-fill"></i></div>
+          <div class="stat-number">142</div>
+          <div class="stat-label">Actes positifs</div>
+          <div class="stat-change up"><i class="bi bi-arrow-up"></i> +12 ce mois</div>
+        </div>
+      </div>
+      <div class="col-6 col-lg-3">
+        <div class="stat-card">
+          <div class="stat-icon rose"><i class="bi bi-exclamation-circle-fill"></i></div>
+          <div class="stat-number">38</div>
+          <div class="stat-label">Actes négatifs</div>
+          <div class="stat-change down"><i class="bi bi-arrow-down"></i> -5 ce mois</div>
+        </div>
+      </div>
+      <div class="col-6 col-lg-3">
+        <div class="stat-card">
+          <div class="stat-icon amber"><i class="bi bi-person-exclamation"></i></div>
+          <div class="stat-number">3</div>
+          <div class="stat-label">Cas à surveiller</div>
+          <div class="stat-change down"><i class="bi bi-arrow-up"></i> Urgent</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-lg-7">
+        <div class="section-title">Actes récents</div>
+        <div class="section-sub">7 derniers jours</div>
+
+        <div class="act-item">
+          <div class="act-dot positive"></div>
+          <div>
+            <div class="act-student">Yasmine Trabelsi</div>
+            <div class="act-desc">Excellente présentation orale sur l'environnement. Initiative remarquable.</div>
+            <div class="act-meta"><i class="bi bi-clock me-1"></i>Aujourd'hui 09h30 · 4ème A</div>
+          </div>
+          <span class="badge-act positive">Talent</span>
+        </div>
+        <div class="act-item">
+          <div class="act-dot negative"></div>
+          <div>
+            <div class="act-student">Karim Mansour</div>
+            <div class="act-desc">Comportement agressif envers un camarade pendant la récréation.</div>
+            <div class="act-meta"><i class="bi bi-clock me-1"></i>Hier 14h15 · 4ème B</div>
+          </div>
+          <span class="badge-act negative">Alerte</span>
+        </div>
+        <div class="act-item">
+          <div class="act-dot positive"></div>
+          <div>
+            <div class="act-student">Sonia Gharbi</div>
+            <div class="act-desc">A aidé spontanément plusieurs élèves en difficulté en mathématiques.</div>
+            <div class="act-meta"><i class="bi bi-clock me-1"></i>Hier 11h00 · 4ème C</div>
+          </div>
+          <span class="badge-act positive">Solidarité</span>
+        </div>
+        <div class="act-item">
+          <div class="act-dot neutral"></div>
+          <div>
+            <div class="act-student">Mohamed Ayari</div>
+            <div class="act-desc">Retard répété (5e fois ce mois). Comportement inhabituel et renfermé.</div>
+            <div class="act-meta"><i class="bi bi-clock me-1"></i>Il y a 2 jours · 4ème B</div>
+          </div>
+          <span class="badge-act neutral">À surveiller</span>
+        </div>
+
+        <button class="btn-outline-custom mt-2" onclick="showPage('history', null)">
+          Voir tout l'historique <i class="bi bi-arrow-right ms-1"></i>
+        </button>
+      </div>
+
+      <div class="col-lg-5">
+        <div class="section-title">Élèves en alerte</div>
+        <div class="section-sub">Cas nécessitant attention</div>
+
+        <div class="contact-card mb-3">
+          <div class="d-flex align-items-center gap-3 mb-3">
+            <div style="width:42px;height:42px;border-radius:12px;background:#fff1f2;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:16px;color:var(--rose);">KM</div>
+            <div>
+              <div style="font-size:14px;font-weight:600;">Karim Mansour</div>
+              <div style="font-size:12px;color:var(--text-muted);">4ème B · 8 actes négatifs</div>
+            </div>
+            <span class="risk-badge high ms-auto">Risque élevé</span>
+          </div>
+          <div class="d-flex gap-2">
+            <button class="btn-contact primary" onclick="openContactModal('Karim Mansour', 'M. Ahmed Mansour', '+216 55 123 456')">
+              <i class="bi bi-telephone"></i> Parent
+            </button>
+            <button class="btn-contact secondary" onclick="showPage('psychiatrists', null)">
+              <i class="bi bi-heart-pulse"></i> Psychiatre
+            </button>
+          </div>
+        </div>
+
+        <div class="contact-card mb-3">
+          <div class="d-flex align-items-center gap-3 mb-3">
+            <div style="width:42px;height:42px;border-radius:12px;background:#fffbeb;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:16px;color:var(--amber);">MA</div>
+            <div>
+              <div style="font-size:14px;font-weight:600;">Mohamed Ayari</div>
+              <div style="font-size:12px;color:var(--text-muted);">4ème B · Isolement récent</div>
+            </div>
+            <span class="risk-badge medium ms-auto">Surveillance</span>
+          </div>
+          <div class="d-flex gap-2">
+            <button class="btn-contact primary" onclick="openContactModal('Mohamed Ayari', 'Mme. Fatma Ayari', '+216 98 765 432')">
+              <i class="bi bi-telephone"></i> Parent
+            </button>
+            <button class="btn-contact secondary" onclick="showPage('psychiatrists', null)">
+              <i class="bi bi-heart-pulse"></i> Psychiatre
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ PAGE: Déclarer un acte ════════════════════════════════ -->
+  <div class="page" id="page-declare">
+    <div class="section-title">Déclarer un acte</div>
+    <div class="section-sub">Enregistrez le comportement d'un élève</div>
+
+    <div class="row g-4">
+      <div class="col-lg-8">
+        <div class="form-card">
+          <div class="mb-4">
+            <label class="form-label">Type d'acte</label>
+            <div class="type-toggle">
+              <div class="type-btn positive selected" onclick="selectType('positive', this)">
+                <div style="font-size:22px;">⭐</div>
+                <div>Positif</div>
+                <div style="font-size:11px;font-weight:400;color:var(--text-muted);">Talent, mérite</div>
+              </div>
+              <div class="type-btn negative" onclick="selectType('negative', this)">
+                <div style="font-size:22px;">⚠️</div>
+                <div>Négatif</div>
+                <div style="font-size:11px;font-weight:400;color:var(--text-muted);">Problème, alerte</div>
+              </div>
+              <div class="type-btn neutral" onclick="selectType('neutral', this)">
+                <div style="font-size:22px;">👁️</div>
+                <div>À surveiller</div>
+                <div style="font-size:11px;font-weight:400;color:var(--text-muted);">Comportement inhabituel</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row g-3 mb-3">
+            <div class="col-md-6">
+              <label class="form-label">Élève concerné</label>
+              <select class="form-select" id="studentSelect">
+                <option value="">— Sélectionner —</option>
+                <option>Yasmine Trabelsi (4ème A)</option>
+                <option>Karim Mansour (4ème B)</option>
+                <option>Sonia Gharbi (4ème C)</option>
+                <option>Mohamed Ayari (4ème B)</option>
+                <option>Ines Bouaziz (4ème A)</option>
+                <option>Rami Chabbi (4ème C)</option>
+                <option>Dorra Khalil (4ème A)</option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Catégorie</label>
+              <select class="form-select" id="categorySelect">
+                <option value="">— Catégorie —</option>
+                <optgroup label="Positif">
+                  <option>Talent académique</option>
+                  <option>Créativité</option>
+                  <option>Leadership</option>
+                  <option>Solidarité / Entraide</option>
+                  <option>Sport / Physique</option>
+                  <option>Art / Expression</option>
+                </optgroup>
+                <optgroup label="Négatif / Alerte">
+                  <option>Agressivité</option>
+                  <option>Harcèlement</option>
+                  <option>Absentéisme</option>
+                  <option>Désengagement scolaire</option>
+                  <option>Automutilation suspectée</option>
+                  <option>Isolement social</option>
+                </optgroup>
+                <optgroup label="À surveiller">
+                  <option>Changement de comportement</option>
+                  <option>Baisse soudaine des notes</option>
+                  <option>Retards répétés</option>
+                  <option>Autre</option>
+                </optgroup>
+              </select>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Date et heure</label>
+            <input type="datetime-local" class="form-control" id="dateInput">
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Description détaillée</label>
+            <textarea class="form-control" rows="4" id="descInput" placeholder="Décrivez précisément l'acte observé, le contexte, les personnes présentes…"></textarea>
+          </div>
+
+          <div class="mb-4">
+            <label class="form-label">Recommandations</label>
+            <div class="d-flex flex-wrap gap-2" id="recommendations">
+              <label class="d-flex align-items-center gap-2 p-2 rounded-3" style="border:1.5px solid var(--border);cursor:pointer;font-size:13px;">
+                <input type="checkbox" class="form-check-input m-0"> Contacter les parents
+              </label>
+              <label class="d-flex align-items-center gap-2 p-2 rounded-3" style="border:1.5px solid var(--border);cursor:pointer;font-size:13px;">
+                <input type="checkbox" class="form-check-input m-0"> Orienter vers psychiatre
+              </label>
+              <label class="d-flex align-items-center gap-2 p-2 rounded-3" style="border:1.5px solid var(--border);cursor:pointer;font-size:13px;">
+                <input type="checkbox" class="form-check-input m-0"> Suivi rapproché
+              </label>
+              <label class="d-flex align-items-center gap-2 p-2 rounded-3" style="border:1.5px solid var(--border);cursor:pointer;font-size:13px;">
+                <input type="checkbox" class="form-check-input m-0"> Réunion pédagogique
+              </label>
+            </div>
+          </div>
+
+          <div class="d-flex gap-3">
+            <button class="btn-primary-custom" onclick="submitAct()">
+              <i class="bi bi-check-lg me-2"></i>Enregistrer l'acte
+            </button>
+            <button class="btn-outline-custom" onclick="clearForm()">
+              <i class="bi bi-x me-1"></i> Effacer
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4">
+        <div class="form-card mb-3" style="background:var(--amber-soft);border-color:#fde68a;">
+          <div style="font-size:20px;margin-bottom:8px;">💡</div>
+          <div style="font-size:14px;font-weight:600;margin-bottom:6px;">Conseil de saisie</div>
+          <div style="font-size:13px;color:var(--text-muted);line-height:1.6;">
+            Soyez précis dans vos descriptions. Un acte bien documenté aide à mieux suivre l'évolution de l'élève et à adapter l'accompagnement.
+          </div>
+        </div>
+        <div class="form-card" style="background:#f0fdf4;border-color:#bbf7d0;">
+          <div style="font-size:20px;margin-bottom:8px;">📊</div>
+          <div style="font-size:14px;font-weight:600;margin-bottom:6px;">Ce mois-ci</div>
+          <div style="font-size:13px;color:var(--text-muted);">Vous avez déclaré <strong>24 actes</strong>, dont <strong style="color:var(--green)">18 positifs</strong> et <strong style="color:var(--rose)">6 négatifs</strong>.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ PAGE: Historique ══════════════════════════════════════ -->
+  <div class="page" id="page-history">
+    <div class="d-flex align-items-center justify-content-between mb-4 flex-wrap gap-3">
+      <div>
+        <div class="section-title">Historique des actes</div>
+        <div class="section-sub">Tous les actes déclarés</div>
+      </div>
+      <div class="d-flex gap-2 flex-wrap">
+        <select class="form-select" style="width:auto;font-size:13px;" id="filterType">
+          <option value="">Tous les types</option>
+          <option value="positive">Positif</option>
+          <option value="negative">Négatif</option>
+          <option value="neutral">À surveiller</option>
+        </select>
+        <select class="form-select" style="width:auto;font-size:13px;" id="filterClass">
+          <option value="">Toutes les classes</option>
+          <option value="4A">4ème A</option>
+          <option value="4B">4ème B</option>
+          <option value="4C">4ème C</option>
+        </select>
+      </div>
+    </div>
+
+    <div id="acts-list">
+      <!-- generated by JS -->
+    </div>
+  </div>
+
+  <!-- ══ PAGE: Élèves ══════════════════════════════════════════ -->
+  <div class="page" id="page-students">
+    <div class="section-title">Mes élèves</div>
+    <div class="section-sub">87 élèves — 3 classes</div>
+
+    <div class="row g-3" id="students-grid">
+      <!-- generated by JS -->
+    </div>
+  </div>
+
+  <!-- ══ PAGE: Alertes ════════════════════════════════════════ -->
+  <div class="page" id="page-alerts">
+    <div class="section-title">Alertes actives</div>
+    <div class="section-sub">Élèves nécessitant une attention immédiate</div>
+
+    <div class="alert-item">
+      <i class="bi bi-exclamation-octagon-fill alert-icon"></i>
+      <div class="alert-text">
+        <div class="alert-title">Karim Mansour — Risque élevé</div>
+        8 actes négatifs ce mois (agressivité, isolement). Recommandation urgente : contacter les parents et orienter vers un spécialiste.
+        <div class="mt-2 d-flex gap-2">
+          <button class="btn-contact primary" onclick="openContactModal('Karim Mansour', 'M. Ahmed Mansour', '+216 55 123 456')"><i class="bi bi-telephone"></i> Appeler parent</button>
+          <button class="btn-contact secondary" onclick="showPage('psychiatrists', null)"><i class="bi bi-heart-pulse"></i> Voir psychiatres</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="alert-item">
+      <i class="bi bi-exclamation-triangle-fill alert-icon" style="color:var(--amber);"></i>
+      <div class="alert-text" style="color:#78350f;">
+        <div class="alert-title" style="color:#92400e;">Mohamed Ayari — Comportement inhabituel</div>
+        Isolement progressif depuis 3 semaines, retards répétés, baisse soudaine des notes. Entretien individuel recommandé.
+        <div class="mt-2 d-flex gap-2">
+          <button class="btn-contact primary" onclick="openContactModal('Mohamed Ayari', 'Mme. Fatma Ayari', '+216 98 765 432')"><i class="bi bi-telephone"></i> Appeler parent</button>
+          <button class="btn-contact secondary" onclick="showPage('psychiatrists', null)"><i class="bi bi-heart-pulse"></i> Voir psychiatres</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="alert-item">
+      <i class="bi bi-info-circle-fill alert-icon" style="color:var(--teal);"></i>
+      <div class="alert-text" style="color:#134e4a;">
+        <div class="alert-title" style="color:#0f4c4c;">Rami Chabbi — À surveiller</div>
+        Baisse des résultats académiques (20% en un mois). Pas d'actes négatifs mais évolution préoccupante.
+        <div class="mt-2 d-flex gap-2">
+          <button class="btn-contact primary" onclick="openContactModal('Rami Chabbi', 'M. Salem Chabbi', '+216 22 334 455')"><i class="bi bi-telephone"></i> Appeler parent</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ PAGE: Contacter parents ═══════════════════════════════ -->
+  <div class="page" id="page-parents">
+    <div class="section-title">Contacter les parents</div>
+    <div class="section-sub">Coordonnées des tuteurs et parents d'élèves</div>
+
+    <div class="row g-3 mb-4">
+      <div class="col-md-4">
+        <div class="contact-card">
+          <div class="contact-header">
+            <div class="contact-avatar">AM</div>
+            <div>
+              <div class="contact-name">M. Ahmed Mansour</div>
+              <div class="contact-role">Parent de Karim Mansour · 4ème B</div>
+            </div>
+          </div>
+          <div class="contact-detail"><i class="bi bi-telephone-fill"></i> +216 55 123 456</div>
+          <div class="contact-detail"><i class="bi bi-envelope-fill"></i> ahmed.mansour@email.com</div>
+          <div class="contact-detail"><i class="bi bi-whatsapp"></i> WhatsApp disponible</div>
+          <div class="d-flex gap-2 mt-3">
+            <button class="btn-contact primary" onclick="toast('📞 Appel simulé vers M. Ahmed Mansour')"><i class="bi bi-telephone"></i> Appeler</button>
+            <button class="btn-contact secondary" onclick="openMailModal('Ahmed Mansour', 'Karim Mansour')"><i class="bi bi-envelope"></i> Message</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="contact-card">
+          <div class="contact-header">
+            <div class="contact-avatar">FA</div>
+            <div>
+              <div class="contact-name">Mme. Fatma Ayari</div>
+              <div class="contact-role">Parent de Mohamed Ayari · 4ème B</div>
+            </div>
+          </div>
+          <div class="contact-detail"><i class="bi bi-telephone-fill"></i> +216 98 765 432</div>
+          <div class="contact-detail"><i class="bi bi-envelope-fill"></i> fatma.ayari@email.com</div>
+          <div class="contact-detail"><i class="bi bi-whatsapp"></i> WhatsApp disponible</div>
+          <div class="d-flex gap-2 mt-3">
+            <button class="btn-contact primary" onclick="toast('📞 Appel simulé vers Mme. Fatma Ayari')"><i class="bi bi-telephone"></i> Appeler</button>
+            <button class="btn-contact secondary" onclick="openMailModal('Fatma Ayari', 'Mohamed Ayari')"><i class="bi bi-envelope"></i> Message</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="contact-card">
+          <div class="contact-header">
+            <div class="contact-avatar">LT</div>
+            <div>
+              <div class="contact-name">Mme. Leila Trabelsi</div>
+              <div class="contact-role">Parent de Yasmine Trabelsi · 4ème A</div>
+            </div>
+          </div>
+          <div class="contact-detail"><i class="bi bi-telephone-fill"></i> +216 77 890 123</div>
+          <div class="contact-detail"><i class="bi bi-envelope-fill"></i> leila.trabelsi@email.com</div>
+          <div class="contact-detail"><i class="bi bi-whatsapp"></i> WhatsApp disponible</div>
+          <div class="d-flex gap-2 mt-3">
+            <button class="btn-contact primary" onclick="toast('📞 Appel simulé vers Mme. Leila Trabelsi')"><i class="bi bi-telephone"></i> Appeler</button>
+            <button class="btn-contact secondary" onclick="openMailModal('Leila Trabelsi', 'Yasmine Trabelsi')"><i class="bi bi-envelope"></i> Message</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ PAGE: Psychiatres ════════════════════════════════════ -->
+  <div class="page" id="page-psychiatrists">
+    <div class="section-title">Contacts psychiatres & psychologues</div>
+    <div class="section-sub">Spécialistes recommandés pour l'accompagnement des élèves</div>
+
+    <div class="row g-3">
+      <div class="col-md-6">
+        <div class="psych-card">
+          <div class="d-flex align-items-start justify-content-between mb-3">
+            <div>
+              <div class="psych-name">Dr. Samia Ben Romdhane</div>
+              <div class="psych-spec">Psychiatre pédiatrique & adolescente</div>
+            </div>
+            <span style="background:rgba(20,184,166,.2);color:#5eead4;font-size:11px;font-weight:700;padding:4px 10px;border-radius:8px;">Disponible</span>
+          </div>
+          <div class="psych-info"><i class="bi bi-geo-alt-fill"></i> Cabinet Tunis, Lac 2</div>
+          <div class="psych-info"><i class="bi bi-telephone-fill"></i> +216 71 234 567</div>
+          <div class="psych-info"><i class="bi bi-envelope-fill"></i> dr.benromdhane@psy.tn</div>
+          <div class="psych-info"><i class="bi bi-clock-fill"></i> Lun–Ven · 8h–17h</div>
+          <div class="mt-3">
+            <span class="psych-tag">Anxiété</span>
+            <span class="psych-tag">Comportement</span>
+            <span class="psych-tag">Troubles scolaires</span>
+          </div>
+          <div class="d-flex gap-2 mt-4">
+            <button class="btn-contact primary" onclick="toast('📞 Appel simulé vers Dr. Ben Romdhane')"><i class="bi bi-telephone"></i> Appeler</button>
+            <button class="btn-contact secondary" style="color:#fff;border-color:rgba(255,255,255,.3);" onclick="toast('✉️ Référence envoyée au Dr. Ben Romdhane')"><i class="bi bi-send"></i> Référer un élève</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="psych-card">
+          <div class="d-flex align-items-start justify-content-between mb-3">
+            <div>
+              <div class="psych-name">Dr. Kamel Haddad</div>
+              <div class="psych-spec">Psychologue clinicien scolaire</div>
+            </div>
+            <span style="background:rgba(245,158,11,.2);color:#fcd34d;font-size:11px;font-weight:700;padding:4px 10px;border-radius:8px;">Sur RDV</span>
+          </div>
+          <div class="psych-info"><i class="bi bi-geo-alt-fill"></i> Cabinet Tunis, Menzah 5</div>
+          <div class="psych-info"><i class="bi bi-telephone-fill"></i> +216 98 456 789</div>
+          <div class="psych-info"><i class="bi bi-envelope-fill"></i> dr.haddad@psycho.tn</div>
+          <div class="psych-info"><i class="bi bi-clock-fill"></i> Mar, Jeu, Sam · 9h–15h</div>
+          <div class="mt-3">
+            <span class="psych-tag">Dépression</span>
+            <span class="psych-tag">Harcèlement</span>
+            <span class="psych-tag">Confiance en soi</span>
+          </div>
+          <div class="d-flex gap-2 mt-4">
+            <button class="btn-contact primary" onclick="toast('📞 Appel simulé vers Dr. Haddad')"><i class="bi bi-telephone"></i> Appeler</button>
+            <button class="btn-contact secondary" style="color:#fff;border-color:rgba(255,255,255,.3);" onclick="toast('✉️ Référence envoyée au Dr. Haddad')"><i class="bi bi-send"></i> Référer un élève</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="psych-card">
+          <div class="d-flex align-items-start justify-content-between mb-3">
+            <div>
+              <div class="psych-name">Dr. Nadia Chebbi</div>
+              <div class="psych-spec">Psychiatre — Troubles du spectre autistique</div>
+            </div>
+            <span style="background:rgba(20,184,166,.2);color:#5eead4;font-size:11px;font-weight:700;padding:4px 10px;border-radius:8px;">Disponible</span>
+          </div>
+          <div class="psych-info"><i class="bi bi-geo-alt-fill"></i> Hôpital Razi, Manouba</div>
+          <div class="psych-info"><i class="bi bi-telephone-fill"></i> +216 71 567 890</div>
+          <div class="psych-info"><i class="bi bi-envelope-fill"></i> dr.chebbi@razi.tn</div>
+          <div class="psych-info"><i class="bi bi-clock-fill"></i> Lun, Mer · 10h–13h</div>
+          <div class="mt-3">
+            <span class="psych-tag">TSA</span>
+            <span class="psych-tag">TDAH</span>
+            <span class="psych-tag">Hyperactivité</span>
+          </div>
+          <div class="d-flex gap-2 mt-4">
+            <button class="btn-contact primary" onclick="toast('📞 Appel simulé vers Dr. Chebbi')"><i class="bi bi-telephone"></i> Appeler</button>
+            <button class="btn-contact secondary" style="color:#fff;border-color:rgba(255,255,255,.3);" onclick="toast('✉️ Référence envoyée au Dr. Chebbi')"><i class="bi bi-send"></i> Référer un élève</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="contact-card d-flex flex-column" style="justify-content:center;align-items:center;text-align:center;min-height:200px;border-style:dashed;">
+          <i class="bi bi-plus-circle" style="font-size:32px;color:var(--teal);margin-bottom:12px;"></i>
+          <div style="font-size:14px;font-weight:600;margin-bottom:4px;">Ajouter un spécialiste</div>
+          <div style="font-size:13px;color:var(--text-muted);">Enregistrez un nouveau contact psychiatrique ou psychologique</div>
+          <button class="btn-contact primary mt-3" onclick="toast('🏥 Formulaire d\'ajout de spécialiste')"><i class="bi bi-plus"></i> Ajouter</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Modal : Contacter parent ───────────────────────────────── -->
+<div class="modal-overlay" id="contactModal">
+  <div class="modal-box">
+    <div class="modal-title" id="modal-parent-name">Contacter le parent</div>
+    <div class="modal-sub" id="modal-student-info">Concernant l'élève</div>
+
+    <div class="mb-3">
+      <label class="form-label">Objet du message</label>
+      <select class="form-select" id="modal-subject">
+        <option>Comportement préoccupant</option>
+        <option>Acte positif — félicitations</option>
+        <option>Demande de rendez-vous</option>
+        <option>Orientation vers un spécialiste</option>
+        <option>Suivi général</option>
+      </select>
+    </div>
+    <div class="mb-4">
+      <label class="form-label">Message</label>
+      <textarea class="form-control" rows="4" id="modal-message" placeholder="Rédigez votre message aux parents…"></textarea>
+    </div>
+    <div class="d-flex gap-3 justify-content-end">
+      <button class="btn-outline-custom" onclick="closeModal()">Annuler</button>
+      <button class="btn-primary-custom" onclick="sendMessage()"><i class="bi bi-send me-2"></i>Envoyer</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── Modal : Message parent rapide ──────────────────────────── -->
+<div class="modal-overlay" id="mailModal">
+  <div class="modal-box">
+    <div class="modal-title" id="mail-parent-name">Envoyer un message</div>
+    <div class="modal-sub" id="mail-student-info">Concernant l'élève</div>
+    <div class="mb-3">
+      <label class="form-label">Message</label>
+      <textarea class="form-control" rows="5" id="mail-body" placeholder="Votre message…"></textarea>
+    </div>
+    <div class="d-flex gap-3 justify-content-end">
+      <button class="btn-outline-custom" onclick="closeMailModal()">Annuler</button>
+      <button class="btn-primary-custom" onclick="sendMail()"><i class="bi bi-send me-2"></i>Envoyer</button>
+    </div>
+  </div>
+</div>
+
+<!-- Toast container -->
+<div class="toast-container" id="toastContainer"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="amana.js"></script>
+</body>
+</html>
