@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Bienvenue sur EduCare</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="amana.css">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom sticky-top">
+    <div class="container">
+        <a class="navbar-brand brand" href="#">amana<span>Care</span></a>
+        <button class="btn btn-teal-outline d-none d-md-block">Aide & Support</button>
+    </div>
+</nav>
+
+<header class="hero-section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h1 class="hero-title">L'éducation, c'est aussi le <span>bien-être</span>.</h1>
+                <p class="hero-text">
+                    Une plateforme collaborative entre enseignants, parents et spécialistes pour un suivi comportemental bienveillant et réactif.
+                </p>
+                <div class="d-flex gap-3 mt-4">
+                    <a href="#login-section" class="btn btn-teal-lg">Commencer</a>
+                    <a href="#features" class="btn btn-white-lg">En savoir plus</a>
+                </div>
+            </div>
+            <div class="col-lg-6 d-none d-lg-block">
+                <img src="https://illustrations.popsy.co/amber/school-lunch.svg" alt="Illustration" class="img-fluid">
+            </div>
+        </div>
+    </div>
+</header>
+
+<section id="login-section" class="py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="section-title">Espace de Connexion</h2>
+            <p class="text-muted">Choisissez votre profil pour accéder à votre tableau de bord</p>
+        </div>
+        
+        <div class="row g-4 justify-content-center">
+            <div class="col-md-5 col-lg-4">
+                <div class="login-card teacher">
+                    <div class="icon-wrap"><i class="bi bi-person-workspace"></i></div>
+                    <h3>Enseignant</h3>
+                    <p>Déclarez les actes, suivez vos classes et coordonnez avec les spécialistes.</p>
+                    <form>
+                        <input type="email" class="form-control mb-2" placeholder="Email professionnel">
+                        <input type="password" class="form-control mb-3" placeholder="Mot de passe">
+                        <button type="button" onclick="location.href='educare.html'" class="btn btn-navy w-100">Accéder à l'interface</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="col-md-5 col-lg-4">
+                <div class="login-card parent">
+                    <div class="icon-wrap"><i class="bi bi-house-heart"></i></div>
+                    <h3>Parent d'élève</h3>
+                    <p>Suivez l'évolution de votre enfant et restez en contact avec ses professeurs.</p>
+                    <form>
+                        <input type="text" class="form-control mb-2" placeholder="Identifiant parent">
+                        <input type="password" class="form-control mb-3" placeholder="Code secret">
+                        <button type="button" class="btn btn-teal w-100">Suivre mon fils/fille</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>

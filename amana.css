@@ -1,3 +1,61 @@
+/* index Dashboard CSS */
+:root {
+    --navy: #0f1f38;
+    --teal: #0d9488;
+    --text-main: #1f2937;
+}
+
+body { font-family: 'DM Sans', sans-serif; color: var(--text-main); }
+
+.brand { font-family: 'DM Serif Display', serif; font-size: 28px; font-weight: bold; color: var(--navy); text-decoration: none; }
+.brand span { color: var(--teal); }
+
+.hero-section { padding: 80px 0; background: linear-gradient(180deg, #fff 0%, #f0fdfa 100%); }
+.hero-title { font-family: 'DM Serif Display', serif; font-size: 3.5rem; color: var(--navy); line-height: 1.1; }
+.hero-title span { color: var(--teal); border-bottom: 5px solid #ccfbf1; }
+.hero-text { font-size: 1.2rem; color: #6b7280; margin-top: 20px; max-width: 500px; }
+
+.login-card {
+    background: white;
+    padding: 40px;
+    border-radius: 24px;
+    border: 1px solid #e5e7eb;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.login-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+
+.icon-wrap {
+    width: 70px; height: 70px; border-radius: 20px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 30px; margin: 0 auto 20px;
+}
+
+.teacher .icon-wrap { background: #eff6ff; color: #2563eb; }
+.parent .icon-wrap { background: #f0fdf4; color: #16a34a; }
+
+.btn-teal { background: var(--teal); color: white; padding: 12px; border-radius: 12px; font-weight: 600; }
+.btn-navy { background: var(--navy); color: white; padding: 12px; border-radius: 12px; font-weight: 600; }
+.btn-teal-lg { background: var(--teal); color: white; padding: 16px 32px; border-radius: 12px; font-weight: 600; font-size: 1.1rem; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Amana Dashboard CSS */
 :root {
     --navy: #0f1f38;
     --navy-light: #1a3052;
