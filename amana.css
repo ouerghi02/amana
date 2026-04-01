@@ -39,7 +39,44 @@ body { font-family: 'DM Sans', sans-serif; color: var(--text-main); }
 .btn-navy { background: var(--navy); color: white; padding: 12px; border-radius: 12px; font-weight: 600; }
 .btn-teal-lg { background: var(--teal); color: white; padding: 16px 32px; border-radius: 12px; font-weight: 600; font-size: 1.1rem; }
 
+/*parent dashboard css*/
+:root {
+    --teal: #0d9488;
+    --navy: #0f1f38;
+}
 
+body { background-color: #f3f4f6; font-family: 'DM Sans', sans-serif; }
+.bg-teal { background-color: var(--teal) !important; }
+
+/* Timeline Design */
+.timeline { position: relative; padding-left: 3rem; }
+.timeline::before {
+    content: ''; position: absolute; left: 1rem; top: 0; bottom: 0;
+    width: 2px; background: #e5e7eb;
+}
+
+.timeline-item { position: relative; margin-bottom: 2rem; }
+.timeline-icon {
+    position: absolute; left: -2.5rem; width: 32px; height: 32px;
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    background: white; border: 2px solid #e5e7eb; z-index: 1;
+}
+
+.positive .timeline-icon { color: #10b981; border-color: #10b981; }
+.negative .timeline-icon { color: #ef4444; border-color: #ef4444; }
+
+.border-danger-left { border-left: 4px solid #ef4444 !important; }
+
+/* Badges Soft Colors */
+.bg-success-soft { background: #ecfdf5; }
+.bg-danger-soft { background: #fef2f2; }
+
+/* Avatar */
+.avatar-lg {
+    width: 60px; height: 60px; background: var(--navy);
+    color: white; border-radius: 50%; display: flex;
+    align-items: center; justify-content: center; font-weight: bold; font-size: 1.2rem;
+}
 
 
 
