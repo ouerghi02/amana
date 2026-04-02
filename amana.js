@@ -5,7 +5,7 @@ const actsData = [
   { type: 'neutral', student: 'Mohamed Ayari', class: '4B', category: 'Retards répétés', desc: 'Retard répété (5e fois ce mois). Comportement inhabituel et renfermé.', date: 'Il y a 2 jours', badge: 'À surveiller' },
   { type: 'positive', student: 'Ines Bouaziz', class: '4A', category: 'Créativité', desc: 'Projet artistique remarquable présenté au concours régional.', date: 'Il y a 3 jours', badge: 'Créativité' },
   { type: 'negative', student: 'Rami Chabbi', class: '4C', category: 'Désengagement scolaire', desc: 'Baisse soudaine des résultats, manque de participation en classe.', date: 'Il y a 4 jours', badge: 'Alerte' },
-  { type: 'positive', student: 'Dorra Khalil', class: '4A', category: 'Leadership', desc: 'A pris l\'initiative d\'organiser une collecte de fournitures pour des élèves dans le besoin.', date: 'Il y a 5 jours', badge: 'Leadership' },
+  { type: 'positive', student: 'Dorra Khalil', class: '4A', category: 'Leadership', desc: 'A pris l\'initiative d\'organiser une collecte de fournitures pour des élèves dans le besoin.', date: 'Il y a 5 jours', badge: 'Leadership' }
 ];
 
 const studentsData = [
