@@ -150,48 +150,12 @@ document.addEventListener('DOMContentLoaded', () => {
   renderStudents();
 });
 
-// Données de test (En production, ceci sera dans votre base de données SQL)
-const users = [
-    {
-        email: "prof@ecole.com",
-        password: "123",
-        role: "teacher",
-        redirect: "educare.html"
-    },
-    {
-        email: "parent@mail.com",
-        password: "456",
-        role: "parent",
-        redirect: "parent-dashboard.html"
-    }
-];
+const mysql = require('mysql2');
 
-function handleLogin(event, roleRequired) {
-    event.preventDefault(); // Empêche le rechargement de la page
+const connection = mysql.createConnection({s
+  host: 'localhost',
+  user: 'root',
+  database: 'amana_db'
+});
 
-    // Récupération des champs selon le formulaire
-    const form = event.target;
-    const email = form.querySelector('input[type="email"], input[type="text"]').value;
-    const password = form.querySelector('input[type="password"]').value;
-
-    // Simulation de recherche dans la base de données
-    const user = users.find(u => 
-        (u.email === email) && 
-        (u.password === password) && 
-        (u.role === roleRequired)
-    );
-
-    if (user) {
-        // Sauvegarder la session localement
-        localStorage.setItem('currentUser', JSON.stringify({
-            email: user.email,
-            role: user.role,
-            isLoggedIn: true
-        }));
-
-        // Redirection vers la page correspondante
-        window.location.href = user.redirect;
-    } else {
-        alert("Identifiants incorrects pour le profil " + roleRequired);
-    }
-}
+connection.query('SELECT * FROM `table`');
