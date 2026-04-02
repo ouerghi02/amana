@@ -1,5 +1,5 @@
 const actsData = [
-  { type: 'positive', student: 'Yasmine Trabelsi', class: '4A', category: 'Talent académique', desc: 'Excellente présentation orale sur l'environnement. Initiative remarquable.', date: 'Aujourd\'hui 09h30', badge: 'Talent' },
+  { type: 'positive', student: 'Yasmine Trabelsi', class: '4A', category: 'Talent académique', desc: 'Excellente présentation orale sur lenvironnement. Initiative remarquable.', date: 'Aujourd\'hui 09h30', badge: 'Talent' },
   { type: 'negative', student: 'Karim Mansour', class: '4B', category: 'Agressivité', desc: 'Comportement agressif envers un camarade pendant la récréation.', date: 'Hier 14h15', badge: 'Alerte' },
   { type: 'positive', student: 'Sonia Gharbi', class: '4C', category: 'Solidarité', desc: 'A aidé spontanément plusieurs élèves en difficulté en mathématiques.', date: 'Hier 11h00', badge: 'Solidarité' },
   { type: 'neutral', student: 'Mohamed Ayari', class: '4B', category: 'Retards répétés', desc: 'Retard répété (5e fois ce mois). Comportement inhabituel et renfermé.', date: 'Il y a 2 jours', badge: 'À surveiller' },
@@ -149,13 +149,3 @@ document.addEventListener('DOMContentLoaded', () => {
   renderHistory();
   renderStudents();
 });
-
-const mysql = require('mysql2');
-
-const connection = mysql.createConnection({s
-  host: 'localhost',
-  user: 'root',
-  database: 'amana_db'
-});
-
-connection.query('SELECT * FROM `table`');
