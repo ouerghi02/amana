@@ -1,0 +1,12 @@
+<div class="row m-3">
+  <div class="col-md-4" *ngFor="let act of acts">
+    <div class="card mb-3 border-info">
+      <div class="card-body">
+        <h6 class="card-title text-info">{{ act.titre }}</h6>
+        <p class="card-text">{{ act.description }}</p>
+        <span class="badge bg-secondary">{{ act.type_action }}</span>
+        <small class="d-block mt-2 text-muted">ID Étudiant: {{ act.student_id }}</small>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+<div class="container mt-4" style="max-width: 500px;">
+  <form (ngSubmit)="onSubmit()" class="border p-4 rounded shadow">
+    <h3>Nouvel Utilisateur</h3>
+    <div class="mb-3">
+      <label>Nom complet</label>
+      <input type="text" [(ngModel)]="user.full_name" name="fn" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <label>Email</label>
+      <input type="email" [(ngModel)]="user.email" name="em" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <label>Mot de passe</label>
+      <input type="password" [(ngModel)]="user.password_hash" name="pw" class="form-control" required>
+    </div>
+    <button type="submit" class="btn btn-success w-100">Enregistrer</button>
+  </form>
+</div>
